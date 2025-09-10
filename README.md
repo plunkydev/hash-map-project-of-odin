@@ -1,7 +1,8 @@
 # HashMap en JavaScript
 
 Este proyecto forma parte del curso **Fullstack JavaScript** de [The Odin Project](https://www.theodinproject.com/lessons/javascript-hashmap).  
-El objetivo es implementar desde cero una **estructura de datos HashMap**, entendiendo cómo funciona internamente y practicando conceptos clave de algoritmos y estructuras de datos.
+El objetivo es implementar desde cero una **estructura de datos HashMap**, entendiendo cómo funciona internamente y practicando conceptos clave de algoritmos y estructuras de datos.  
+Además, se planea desarrollar una **representación gráfica** que permita visualizar la distribución de claves en buckets, así como interactuar con los métodos principales de la estructura.
 
 ---
 
@@ -15,8 +16,7 @@ Sin embargo, construir un **HashMap propio** permite:
 - Manejar **colisiones** mediante listas enlazadas.
 - Profundizar en el concepto de **factor de carga** y **redimensionado dinámico**.
 - Practicar el diseño y la implementación de métodos de una estructura de datos clásica.
-
-Este ejercicio refuerza la mentalidad de programar desde los fundamentos y no depender únicamente de las abstracciones que ofrece el lenguaje.
+- **Visualizar de manera gráfica** cómo se insertan, eliminan y buscan los datos en el HashMap.
 
 ---
 
@@ -37,7 +37,8 @@ El HashMap debe soportar:
 Además:
 
 - Manejo de **colisiones** con listas enlazadas.  
-- **Redimensionado automático** cuando se supera el factor de carga (`loadFactor`).
+- **Redimensionado automático** cuando se supera el factor de carga (`loadFactor`).  
+- **Representación gráfica interactiva** para probar las operaciones de inserción, búsqueda y eliminación.
 
 ---
 
@@ -46,7 +47,8 @@ Además:
 - Cómo diseñar una **función hash simple**.  
 - Diferencia entre complejidad **promedio** y **peor caso** en un HashMap.  
 - La importancia de los **invariantes internos**: no duplicar claves, mantener `count` correcto, validar índices.  
-- Cómo reinsertar elementos correctamente al **duplicar la capacidad**.
+- Cómo reinsertar elementos correctamente al **duplicar la capacidad**.  
+- Qué aporta una **visualización gráfica** para reforzar la comprensión de estructuras de datos.
 
 ---
 
@@ -56,10 +58,11 @@ Además:
 2. Sobrescribir valores en una clave existente y comprobar que la longitud no cambia.  
 3. Usar `remove`, probando eliminar claves en diferentes posiciones del bucket.  
 4. Verificar que `keys`, `values` y `entries` devuelven la información completa.  
+5. **Comprobar en la interfaz gráfica** que los buckets y listas enlazadas reflejan los cambios tras cada operación.
 
 ---
 
 ## 📌 Estado
 
 Este proyecto está en construcción como parte de mi aprendizaje con The Odin Project.  
-El propósito no es crear una librería de producción, sino **comprender a fondo la lógica de los HashMaps**.
+El propósito no es crear una librería de producción, sino **comprender a fondo la lógica de los HashMaps** y reforzar el aprendizaje con una **visualización interactiva**.
