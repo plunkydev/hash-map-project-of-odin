@@ -29,7 +29,7 @@ export class HashMap {
         if (typeof value !== 'string') {
             throw new TypeError('El valor debe ser un string');
         }
-        if (this.entries().some(el => el[0] === key)) {
+        if (this.has(key)) {
             throw new Error('La clave ya existe');
         }
         const index = this.hash(key);
@@ -40,6 +40,9 @@ export class HashMap {
     get(key) {
         let result = this.entries().find(el => el[0] === key)
         return result ? result[1] : null
+    }
+    has(key) {
+        return this.entries().some(el => el[0] === key)
     }
     entries() {
         const all = [];
