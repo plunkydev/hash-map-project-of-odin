@@ -11,6 +11,10 @@ export class HashMap {
             this.buckets[i] = new LinkedList();
         }
     }
+    isLoaded() {
+        return this.capacity * this.loadFactor <= this.size;
+    }
+
     hash(key) {
         let hash = 0;
         for (const char of key) {
@@ -22,5 +26,16 @@ export class HashMap {
         const index = this.hash(key);
         this.buckets[index].insert(key, value);
         this.size++;
-    }  
+    }
+    entries() {
+        const all = [];
+        for (const bucket of this.buckets) {
+            let current = bucket.head;
+            while (current) {
+                all.push([current.key, current.value]);
+                current = current.next;
+            }
+        }
+        return all;
+    }
 }
