@@ -15,8 +15,13 @@ export class HashMap {
         return this.capacity * this.loadFactor <= this.size;
     }
 
-    #resize() {
-        let newCapacity = Math.ceil(this.capacity * 1.5);
+    #resize(upOrDown = 'up') {
+        let newCapacity = 0;
+        if (upOrDown === 'down') {
+            newCapacity = Math.ceil(this.capacity / 1.5);
+        } else {
+            newCapacity = Math.floor(this.capacity * 1.5);
+        }
         let bucketsResized = new Array(newCapacity)
         let keysBackup = this.entries()
         for (let i = 0; i < bucketsResized.length; i++) {
@@ -24,7 +29,7 @@ export class HashMap {
         }
         this.capacity = newCapacity
         this.size = 0
-        for (let i = 0; i < this.entries().length; i++) {
+        for (let i = 0; i < keysBackup.length; i++) {
             const index = this.#hash(keysBackup[i][0]);
             bucketsResized[index].insert(keysBackup[i][0], keysBackup[i][1]);
             this.size++;
@@ -53,7 +58,7 @@ export class HashMap {
         this.buckets[index].insert(key, value);
         this.size++;
         if (this.#isLoaded()) {
-            this.#resize()
+            this.#resize('up')
         }
     }
 
@@ -63,6 +68,20 @@ export class HashMap {
     }
     has(key) {
         return this.entries().some(el => el[0] === key)
+    }
+
+    remove(key) {
+        if(this.has(key)) {
+            const index = this.#hash(key);
+            this.buckets[index].delete(key)
+            this.size--
+            if (!this.#isLoaded()) {
+                this.#resize('down')
+            }
+            return true
+        } else {
+            return false
+        }
     }
     entries() {
         const all = [];
