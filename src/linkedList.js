@@ -10,6 +10,23 @@ class LinkedList {
         this.head = newNode;
         this.size++;
     }
+
+    delete(key) {
+        let current = this.head;
+        let previous = null;
+        while (current) {
+            if (current.key === key) {
+                if (previous) {
+                    previous.next = current.next;
+                } else {
+                    this.head = current.next;
+                }
+                this.size--;
+            }
+            previous = current;
+            current = current.next;
+        }
+    }
 }
 
 export { LinkedList };
