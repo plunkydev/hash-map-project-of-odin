@@ -22,4 +22,5 @@ test.set('pencil', 'yellow')
 test.set('queen', 'purple')
 test.set('robot', 'metallic')
 test.set('sun', 'yellow') */
+console.log(test.remove('dog'))
 console.log(test)
