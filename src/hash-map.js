@@ -15,6 +15,20 @@ export class HashMap {
         return this.capacity * this.loadFactor <= this.size;
     }
 
+    resize() {
+        let bucketsResized = new Array(Math.ceil(this.capacity * 1.5))
+        let keysBackup = this.entries()
+        for (let i = 0; i < bucketsResized.length; i++) {
+            bucketsResized[i] = new LinkedList();
+        }
+        this.buckets = bucketsResized
+        this.capacity = Math.ceil(this.capacity * 1.5)
+        this.size = 0
+        for (let i = 0; i < keysBackup.length; i++) {
+            this.set(keysBackup[i][0], keysBackup[i][1])
+        }
+    }
+
     hash(key) {
         let hash = 0;
         for (const char of key) {
@@ -35,6 +49,9 @@ export class HashMap {
         const index = this.hash(key);
         this.buckets[index].insert(key, value);
         this.size++;
+        if (this.isLoaded()) {
+            this.resize()
+        }
     }
 
     get(key) {
