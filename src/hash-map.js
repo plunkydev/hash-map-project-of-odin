@@ -23,9 +23,23 @@ export class HashMap {
         return hash;
     }
     set(key, value) {
+        if (typeof key !== 'string') {
+            throw new TypeError('La clave debe ser un string');
+        }
+        if (typeof value !== 'string') {
+            throw new TypeError('El valor debe ser un string');
+        }
+        if (this.entries().some(el => el[0] === key)) {
+            throw new Error('La clave ya existe');
+        }
         const index = this.hash(key);
         this.buckets[index].insert(key, value);
         this.size++;
+    }
+
+    get(key) {
+        let result = this.entries().find(el => el[0] === key)
+        return result ? result[1] : null
     }
     entries() {
         const all = [];
