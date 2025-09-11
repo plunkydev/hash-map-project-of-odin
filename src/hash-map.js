@@ -11,25 +11,28 @@ export class HashMap {
             this.buckets[i] = new LinkedList();
         }
     }
-    isLoaded() {
+    #isLoaded() {
         return this.capacity * this.loadFactor <= this.size;
     }
 
-    resize() {
-        let bucketsResized = new Array(Math.ceil(this.capacity * 1.5))
+    #resize() {
+        let newCapacity = Math.ceil(this.capacity * 1.5);
+        let bucketsResized = new Array(newCapacity)
         let keysBackup = this.entries()
         for (let i = 0; i < bucketsResized.length; i++) {
             bucketsResized[i] = new LinkedList();
         }
-        this.buckets = bucketsResized
-        this.capacity = Math.ceil(this.capacity * 1.5)
+        this.capacity = newCapacity
         this.size = 0
-        for (let i = 0; i < keysBackup.length; i++) {
-            this.set(keysBackup[i][0], keysBackup[i][1])
+        for (let i = 0; i < this.entries().length; i++) {
+            const index = this.#hash(keysBackup[i][0]);
+            bucketsResized[index].insert(keysBackup[i][0], keysBackup[i][1]);
+            this.size++;
         }
+        this.buckets = bucketsResized
     }
 
-    hash(key) {
+    #hash(key) {
         let hash = 0;
         for (const char of key) {
             hash = (hash * 31 + char.codePointAt(0)) % this.capacity;
@@ -46,11 +49,11 @@ export class HashMap {
         if (this.has(key)) {
             throw new Error('La clave ya existe');
         }
-        const index = this.hash(key);
+        const index = this.#hash(key);
         this.buckets[index].insert(key, value);
         this.size++;
-        if (this.isLoaded()) {
-            this.resize()
+        if (this.#isLoaded()) {
+            this.#resize()
         }
     }
 
