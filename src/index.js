@@ -1,18 +1,6 @@
 import { HashMap } from '/src/hash-map.js';
 const test = new HashMap(16, 0.75)
-//pruebas para la funcion hash
-console.log(test.hash("apple"))
-console.log(test.hash('banana'))
-console.log(test.hash('carrot'))
-console.log(test.hash('dog'))
-console.log(test.hash('elephant'))
-console.log(test.hash('frog'))
-console.log(test.hash('grape'))
-console.log(test.hash('hat'))
-console.log(test.hash('ice cream'))
-console.log(test.hash('jacket'))
-console.log(test.hash('kite'))
-console.log(test.hash('lion'))
+
 //pruebas para la funcion set
 test.set("apple", "red")
 test.set('banana', 'yellow')
@@ -25,5 +13,13 @@ test.set('hat', 'black')
 test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
+//pruebas para la funcion resize
 test.set('lion', 'golden')
-console.log(test);
+/* test.set('monkey', 'tan')
+test.set('notebook', 'silver')
+test.set('orange', 'orange')
+test.set('pencil', 'yellow')
+test.set('queen', 'purple')
+test.set('robot', 'metallic')
+test.set('sun', 'yellow') */
+console.log(test)
