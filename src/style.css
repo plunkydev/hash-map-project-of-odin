@@ -1,0 +1,34 @@
+.layout * {
+    border: 1px solid red;
+}
+
+.layout {
+    width: 100%;
+
+    display: grid;
+    grid:
+        "header header header" auto "leftSide hash_map rightSide" 1fr "footer footer footer" auto / auto 1fr auto;
+    gap: 8px;
+}
+
+.header {
+    grid-area: header;
+    text-align: center;
+}
+
+.leftSide {
+    grid-area: leftSide;
+}
+
+.hash_map {
+    grid-area: hash_map;
+}
+
+.rightSide {
+    grid-area: rightSide;
+}
+
+.footer {
+    grid-area: footer;
+    text-align: center;
+}
