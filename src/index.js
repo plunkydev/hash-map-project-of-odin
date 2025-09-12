@@ -1,5 +1,5 @@
 import { HashMap } from '/src/hash-map.js';
-const test = new HashMap(16, 0.75)
+const test = new HashMap()
 
 //pruebas para la funcion set
 test.set("apple", "red")
@@ -25,4 +25,7 @@ test.set('sun', 'yellow') */
 console.log(test.remove('dog'))
 //test.set('tiger', 'orange')
 //console.log(test.remove('lion'))
-console.log(test)
+//console.log(test.clear())
+//console.log(test.keys())
+console.log(test.values())
+console.log(test.buckets)
