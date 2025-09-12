@@ -1,4 +1,5 @@
 import { HashMap } from '/src/hash-map.js';
+import './style.css'
 const test = new HashMap()
 
 //pruebas para la funcion set
