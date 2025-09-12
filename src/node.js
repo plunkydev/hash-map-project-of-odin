@@ -6,3 +6,13 @@ export class Node {
     }
 }
 
+export const renderNode = (index, node) => {
+    const div = document.createElement('div')
+    div.classList = "bucket"
+    div.innerText = `[${index}]`
+    div.innerHTML = `
+            <div id="bucket${index}">${div.innerText}</div>
+            <div id="node${index}"></div>`;
+    return div
+}
+
