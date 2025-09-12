@@ -1,6 +1,4 @@
-.layout * {
-    border: 1px solid red;
-}
+
 
 .layout {
     width: 100%;
@@ -18,6 +16,7 @@
 
 .leftSide {
     grid-area: leftSide;
+    width: 5vw;
 }
 
 .hash_map {
@@ -26,9 +25,33 @@
 
 .rightSide {
     grid-area: rightSide;
+    width: 5vw;
 }
 
 .footer {
     grid-area: footer;
     text-align: center;
+}
+
+.bucket {
+    border: 1px solid rgb(81, 81, 81);
+    margin: 4px;
+    padding: 4px;
+    min-height: 40px;
+    display: grid;
+    grid-template-columns: 40px 96%;
+    max-width: clamp(105px, 100vw, 1200px);
+    overflow: auto;
+}
+
+.bucket :first-child {
+    background-color: #d3d3d3;
+    text-align: center;
+    font-weight: bold;
+    place-content: center;
+}
+
+.bucket :last-child {
+    border: 1px solid #d3d3d3;
+    padding-left: 4px;
 }
