@@ -1,17 +1,49 @@
-import { HashMap } from '/src/hash-map.js';
+import { test } from './initialData'
 import { renderNode } from './node'
 import './style.css'
-const test = new HashMap()
+let lastCapacity = test.capacity
 const main = document.getElementById("data_hashMap")
+const saveKeyValue = document.getElementById('saveKeyValue')
+const removeKey = document.getElementById('removeKeyValue')
+const removeAll = document.getElementById('removeallData')
+
+saveKeyValue.addEventListener('click', () => {
+    const key = document.getElementById('addkey')
+    const value = document.getElementById('addvalue')
+    test.set(key.value, value.value)
+    if (test.capacity > lastCapacity) lastCapacity = test.capacity
+    upDateDisplayBucket(lastCapacity)
+    key.value = ''
+    value.value = ''
+})
+
+removeKey.addEventListener('click', () => {
+    const key = document.getElementById('removekey')
+    test.remove(key.value);
+    upDateDisplayBucket(lastCapacity)
+    key.value = ''
+})
+
+removeAll.addEventListener('click', () => {
+    const confirmDelete = confirm("⚠️ Are you sure you want to delete ALL data from the HashMap?");
+
+    if (confirmDelete) {
+        test.clear();
+        upDateDisplayBucket(lastCapacity);
+        alert("All data has been deleted.");
+    } else {
+        alert("Operation canceled.");
+    }
+});
 
 const displayBucket = (index) => {
     const bucketDiv = document.getElementById(`node${index}`)
-    bucketDiv.innerText = ''
     if (test.buckets[index].head === null) {
         bucketDiv.innerText = "null"
     } else {
+        bucketDiv.innerText = ''
         let current = test.buckets[index].head
-        while(current) {
+        while (current) {
             bucketDiv.innerText += `  [${current.key} => ${current.value}] __`
             current = current.next
         }
@@ -19,42 +51,12 @@ const displayBucket = (index) => {
     return true
 }
 
-
-
-
-//pruebas para la funcion set
-test.set("apple", "red")
-test.set('banana', 'yellow')
-test.set('carrot', 'orange')
-test.set('dog', 'brown')
-test.set('elephant', 'gray')
-test.set('frog', 'green')
-test.set('grape', 'purple')
-test.set('hat', 'black')
-test.set('ice cream', 'white')
-test.set('jacket', 'blue')
-test.set('kite', 'pink')
-//pruebas para la funcion resize
-//test.set('lion', 'golden')
-/* test.set('monkey', 'tan')
-test.set('notebook', 'silver')
-test.set('orange', 'orange')
-test.set('pencil', 'yellow')
-test.set('queen', 'purple')
-test.set('robot', 'metallic')
-test.set('sun', 'yellow') */
-//console.log(test.remove('dog'))
-//test.set('tiger', 'orange')
-//console.log(test.remove('lion'))
-//console.log(test.clear())
-//console.log(test.keys())
-//console.log(test.values())
-//console.log(displayBucket(9))
-console.log(test.capacity)
-for (let i = 0; i < test.capacity; i++) {
+function upDateDisplayBucket(capacity = lastCapacity) {
+    main.innerHTML = ''
+    for (let i = 0; i < capacity; i++) {
     main.appendChild(renderNode(i))
-}
-//iterar solo para prueba de la funcion displayBucket
-for (let i = 0; i < test.capacity; i++) {
     displayBucket(i)
+    }
 }
+upDateDisplayBucket(test.capacity)
+
