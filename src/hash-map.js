@@ -75,9 +75,9 @@ export class HashMap {
             const index = this.#hash(key);
             this.buckets[index].delete(key)
             this.size--
-            if (!this.#isLoaded()) {
+            /* if (!this.#isLoaded()) {
                 this.#resize('down')
-            }
+            } */
             return true
         } else {
             return false
