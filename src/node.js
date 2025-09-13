@@ -6,7 +6,7 @@ export class Node {
     }
 }
 
-export const renderNode = (index, node) => {
+export const renderNode = (index) => {
     const div = document.createElement('div')
     div.classList = "bucket"
     div.innerText = `[${index}]`
