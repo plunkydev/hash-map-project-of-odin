@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 3px;
+    margin: 1rem 5vw;
 }
 
 h1 {
@@ -18,21 +19,26 @@ h1 {
     align-items: stretch;
     column-gap: 1rem;
     flex-wrap: wrap;
-    margin: 1rem 0;
 }
 
 .uiCotainer > * {
     min-width: 200px;
-    max-width: 500px;
+    max-width: 600px;
     padding: .4rem;
+    border-radius: 5px;
+    font-size: small;
 }
 
 input {
-    max-width: 150px;
+    max-width: 125px;
+    border-radius: 3px;
+    padding: 3px;
 }
 
 button {
     min-width: 100px;
+    border-radius: 3px;
+    padding: 3px;
 }
 
 .layout {
@@ -55,6 +61,9 @@ button {
 
 .hash_map {
     grid-area: hash_map;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
 }
 
 .rightSide {
@@ -68,14 +77,14 @@ button {
 }
 
 .bucket {
-    border: 1px solid rgb(81, 81, 81);
+    border-left: 0.5px solid rgb(81, 81, 81);
+    border-top: 0.5px solid rgb(81, 81, 81);
     margin: 4px;
     padding: 4px;
     min-height: 40px;
     display: grid;
     grid-template-columns: 40px 96%;
     max-width: clamp(105px, 100vw, 100%);
-    overflow: auto;
 }
 
 .bucket :first-child {
@@ -86,6 +95,5 @@ button {
 }
 
 .bucket :last-child {
-    border: 1px solid #d3d3d3;
     padding-left: 4px;
 }
